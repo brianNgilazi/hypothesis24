@@ -1,0 +1,13 @@
+<div>
+  <div class="w3-light-gray" *ngIf="inProgress">
+    <div class="w3-black progressBar w3-center" [ngStyle]="{'width': (percentage|async) || 0}">
+      {{ percentage | async }}
+    </div>
+  </div>
+  <input #fileInput class="w3-hide" type="file" accept='image/*' (change)="startUpload($event)">
+  <div class="w3-bar">
+    <button (click)="fileInput.click()" class="w3-button w3-border w3-bar-item ">Upload File</button>
+    <!-- <button (click)="fileInput.click()" class="w3-button w3-border w3-red w3-bar-item">Remove File</button> -->
+  </div>
+
+</div>

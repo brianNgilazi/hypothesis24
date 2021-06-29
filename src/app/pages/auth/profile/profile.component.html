@@ -1,0 +1,89 @@
+<div class="w3-container">
+  <div class="w3-half">
+    <h2>Author Profile</h2>
+  <form [formGroup]="form" (ngSubmit)="update(form.value)">
+    <p>
+      <label>Username:</label>
+      <input class="w3-input w3-border" type="text" formControlName="username" required>
+    </p>
+
+    <p>
+      <label>Email:</label>
+      <input class="w3-input w3-border" type="email" formControlName="email" autocomplete="email" required>
+    </p>
+
+    <div class="w3-panel w3-red" *ngIf="errorMessage">
+      <small>{{errorMessage}}</small>
+    </div>
+
+    <button class="w3-button w3-black w3-section" type="submit" [disabled]="!form.valid">Update</button>
+
+  </form>
+  </div>
+
+
+  <hr>
+  <!-- Posts -->
+  <div class="w3-mobile" style="width: 50%;">
+      <h4>My Articles</h4>
+
+      <ul class="w3-ul">
+        <li  *ngFor="let article of (userArticles|async)">
+          <div class="w3-hoverable w3-white w3-card">
+            <div class="w3-row">
+              <div class="w3-third">
+                <img [src]="article.imageUrl" alt="Image" class="w3-image">
+              </div>
+              <div class="w3-rest w3-padding">
+                <span>{{article.title}}</span><br>
+                <span>{{article.subtitle}}</span><br>
+                <span class="w3-small w3-opacity">{{article.created|date: 'MMM d, y, hh:mm a'}}</span>
+              </div>
+            </div>
+            <div class="w3-row">
+              <div class="w3-bar s12 w3-border-top">
+                <a routerLink="/write/{{article.id}}" class="w3-bar-item w3-button w3-border-left w3-right">Edit/Delete</a>
+                <a routerLink="/read/{{article.id}}" class="w3-bar-item w3-button w3-border-left w3-right">View</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a routerLink="/write" class="w3-button w3-border w3-border-black">New Article</a>
+        </li>
+      </ul>
+  </div>
+
+
+  <div class="w3-mobile w3-margin-top" style="width: 50%;">
+    <h4>Drafts</h4>
+
+    <ul class="w3-ul">
+      <li  *ngFor="let draft of (drafts$|async)">
+        <div class="w3-hoverable w3-card">
+          <div class="w3-row">
+            <div class="w3-third">
+              <img [src]="draft.imageUrl" alt="Image" class="w3-image">
+            </div>
+            <div class="w3-rest w3-padding">
+              <span>{{draft.title}}</span><br>
+              <span>{{draft.subtitle}}</span><br>
+              <span class="w3-small w3-opacity">{{draft.created|date: 'MMM d, y, hh:mm a'}}</span>
+            </div>
+          </div>
+          <div class="w3-row">
+            <div class="w3-bar s12 w3-border-top">
+              <a routerLink="/write/{{draft.id}}/draft" class="w3-bar-item w3-button w3-border-left w3-right">Edit/Delete</a>
+            </div>
+          </div>
+        </div>
+
+      </li>
+    </ul>
+
+
+  </div>
+
+
+</div>
+

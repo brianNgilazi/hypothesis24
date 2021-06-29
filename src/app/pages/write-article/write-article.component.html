@@ -1,0 +1,109 @@
+<div class="w3-container">
+  <h2>{{edit? 'Edit Article': 'New Article'}}</h2>
+  <form [formGroup]="articleForm"  class="w3-container">
+
+    <p>
+      <label>Title:</label>
+      <input class="w3-input w3-border" type="text" formControlName="title">
+    </p>
+
+    <p>
+      <label>Subtitle:</label>
+      <textarea class="w3-input w3-border" type="text" formControlName="subtitle"></textarea>
+    </p>
+
+    <p>
+      <label>Body:</label>
+      <textarea class="w3-input w3-border" type="text" formControlName="body" rows="10"></textarea>
+      <small class="w3-opacity">{{(bodyLength$|async) || 0}} characters ({{minLength}} min.)</small>
+    </p>
+
+    <h3>Image</h3>
+    <div class="w3-row">
+      <div class="l12">
+        <img class="w3-image w3-mobile" *ngIf="imageURL; else noPic" [src]="imageURL" alt='Article Image' style="width: 50%;">
+        <ng-template #noPic>
+          <div class="w3-panel w3-gray w3-display-container" style="width: 100%; min-height: 200px;">
+            <p class="w3-display-middle">No Image</p>
+          </div>
+        </ng-template>
+      </div>
+      <div class="l3">
+        <app-uploader fileName='myPicture' [parentPath]="'pics'" (uploaded)="picUploaded($event)"></app-uploader>
+      </div>
+
+    </div>
+    <hr>
+    <div formArrayName="tags">
+      <h3>Tags</h3>
+
+
+      <div class="w3-row" style="padding-left: 0; margin-left: 0;">
+        <!-- The repeated tag template -->
+        <div class="w3-col m3 l2 w3-animate-bottom" *ngFor="let tag of tags.controls; let i=index">
+          <div class="w3-cell-row w3-margin-top">
+            <input type="text" [formControlName]="i"  class="w3-input w3-border w3-cell" >
+            <span (click)="removeTag(i)" class="w3-cell w3-cell-middle w3-button w3-padding-small">&times;</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <button (click)="addTag()" class="w3-button w3-border w3-section">Add Tag</button>
+
+    </div>
+
+    <hr>
+
+
+    <div formArrayName="references">
+      <h3>References</h3>
+      <div *ngFor="let ref of references.controls; let i=index">
+        <!-- The repeated refrence template -->
+        <div class="w3-cell-row w3-margin-bottom w3-animate-bottom"  [formGroupName]="i">
+          <div class="w3-cell w3-mobile" style="padding-right: 10px;">
+            <label>Source Name</label>
+            <input type="text" formControlName="label"  class="w3-input w3-border">
+          </div>
+          <div class="w3-cell w3-mobile">
+            <label>URL/Link</label>
+            <input type="url" formControlName="url"  class="w3-input w3-border">
+          </div>
+          <span (click)="removeReference(i)" class="w3-cell w3-cell-middle w3-button w3-padding-small w3-large">&times;</span>
+
+        </div>
+        <hr class="w3-dark-grey">
+
+      </div>
+      <button (click)="addReference()" class="w3-button w3-border w3-section">Add Reference</button>
+    </div>
+
+
+    <!-- <div class="w3-panel w3-gray" *ngIf="articleForm">
+      <p>{{articleForm.value|json}}</p>
+      <p class="w3-button w3-black" (click)="findInvalidControls()">articleForm.errors.toString()</p>
+
+
+    </div> -->
+
+
+    <div class="w3-panel w3-red" *ngIf="errorMessage">
+      <p>{{errorMessage}}</p>
+    </div>
+
+    <div class="w3-center" style="width: 100%;">
+      <button class="w3-button w3-black w3-margin" (click)="saveArticle()" type="submit" [disabled]="!articleForm.valid">Post</button>
+
+      <button class="w3-button w3-black w3-border w3-margin" (click)="saveDraft()" type="submit" *ngIf="!edit">Save Draft</button>
+
+      <button class="w3-button w3-red w3-margin" (click)="delete()" *ngIf="edit" [disabled]="!articleForm.valid && !draft">Delete &times;</button>
+
+    </div>
+
+
+  </form>
+</div>
+
+
+

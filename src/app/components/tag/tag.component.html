@@ -1,0 +1,11 @@
+<div class="w3-card">
+  <div class="w3-container">
+    <h4>Tags</h4>
+  </div>
+  <div class="w3-white">
+    <span [ngClass]='selectedTag === tag? "w3-black":"w3-light-gray"' [routerLink]='"/tags/"+tag'
+    style="margin: 8px;" class="w3-tag w3-button w3-margin-small w3-small" *ngFor="let tag of tags">
+        {{tag}}
+    </span>
+  </div>
+</div>

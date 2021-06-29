@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "hypothesis-24": {
+      "hosting": {
+        "hypothesis24": [
+          "hypothesis-24"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "hypothesis-24"
+  }
+}

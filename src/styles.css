@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://www.w3schools.com/w3css/4/w3.css');
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Ubuntu&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap');
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Shippori Mincho', serif !important;
+}
+
+body{
+  font-family: 'Shippori Mincho', serif !important;
+}

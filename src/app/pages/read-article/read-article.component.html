@@ -1,0 +1,44 @@
+<!-- Blog entry -->
+<div class="w3-white w3-container w3-margin-bottom" style="width: 100%;">
+  <ng-container *ngIf="(article$|async) as article; else loading">
+    <div class="w3-container w3-center">
+      <h1><b>{{article.title}}</b></h1>
+      <h2>{{article.subtitle}}</h2>
+    <p> <span>{{article.author}} &bull; {{article.created|date: 'MMM d, y'}}<br>
+      <span class="w3-small w3-opacity" *ngIf="article.modified">(Updated {{article.modified|date: 'MMM d, y'}})</span>
+    </span>
+    </p>
+    <img [src]="article.imageUrl" alt="Article Image" class="w3-image" style="width: 50%;">
+    </div>
+
+    <div class="w3-container w3-margin w3-margin-bottom">
+      <article class="article"  [innerHtml]='article.body'></article>
+
+      <h5>References</h5>
+      <p>
+        <a *ngFor="let ref of article.references" [href]='ref.url'>
+          {{ref.label}} - {{ref.url}}
+        </a>
+      </p>
+
+      <p class="w3-margin-top">
+        <span>
+          <b>Views </b> <span class="w3-tag">{{article.views || 0}}</span>
+        </span>
+      </p>
+
+      <div class="w3-row" style="padding-left: 0;margin-left: 0;">
+        <div class="w3-third">
+          <app-tag [tags]='article.tags'></app-tag>
+        </div>
+      </div>
+
+    </div>
+
+
+  </ng-container>
+  <ng-template #loading>
+    <app-spinner></app-spinner>
+  </ng-template>
+
+</div>

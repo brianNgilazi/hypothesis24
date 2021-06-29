@@ -1,0 +1,14 @@
+<div>
+
+  <!-- Grid -->
+  <div class="w3-row-padding">
+  <h2>Showing {{count$|async}} Results for <span class="w3-tag w3-black ">{{tag}}</span></h2>
+
+  <!-- Articles-->
+  <div class="w3-col l8 s12">
+    <app-feed-article *ngFor="let article of (articles$|async)" [article]='article'></app-feed-article>
+  </div>
+  <div class="w3-col l4">
+    <app-tag [tags]="(tags$|async)" [selectedTag]='tag'></app-tag>
+  </div>
+</div>

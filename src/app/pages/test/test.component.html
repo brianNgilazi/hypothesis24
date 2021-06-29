@@ -1,0 +1,24 @@
+<div class="w3-container w3-content" style="width: 100%;">
+
+
+  <div class="w3-margin">
+    <app-spinner></app-spinner>
+  </div>
+  <div class="w3-container w3-margin-top">
+    <h2>Datamuse Search</h2>
+
+    <p>
+      <label>Enter a phrase:</label>
+      <input class="w3-input w3-border" type="text" [formControl]='searchControl' required>
+    </p>
+
+    <button class="w3-button w3-black w3-section" (click)="search()" [disabled]="!searchControl.valid">Search</button>
+
+  </div>
+
+  <ul class="w3-ul">
+    <li *ngFor="let phrase of (results$|async)">
+      {{phrase}}
+    </li>
+  </ul>
+</div>

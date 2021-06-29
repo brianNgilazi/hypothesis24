@@ -1,0 +1,25 @@
+<div class="w3-bar w3-black w3-large">
+  <span class="w3-bar-item w3-mobile w3-button" routerLink="home"><b>{{title}}</b></span>
+  <a routerLink="home" routerLinkActive="active" class="w3-bar-item w3-button w3-mobile">Home</a>
+  <ng-container *ngIf="!(auth.user$|async); else signedIn">
+    <a routerLink="sign-in" routerLinkActive="active" class="w3-bar-item w3-button w3-mobile w3-right">Sign In</a>
+  </ng-container>
+  <ng-template #signedIn>
+    <a role="button" class="w3-bar-item w3-button w3-mobile w3-right" (click)="auth.signOut()">Sign Out</a>
+    <a routerLink="profile" routerLinkActive="active" role="button" class="w3-bar-item w3-button w3-mobile w3-right">Profile</a>
+    <a routerLink="write" routerLinkActive="active" role="button" class="w3-bar-item w3-button w3-mobile w3-right">New Article</a>
+  </ng-template>
+</div>
+
+<div class="w3-content w3-margin-bottom" style="max-width:1400px; min-height: 80vh;">
+
+  <router-outlet></router-outlet>
+
+</div>
+<footer class="footer" style="width: 100%;">
+  <div class="w3-bar w3-black">
+    <span class="w3-bar-item w3-mobile"><small>&copy; {{year}} Brian Ngilazi. All rights reserved.</small></span>
+  </div>
+</footer>
+
+

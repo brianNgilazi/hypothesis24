@@ -1,0 +1,23 @@
+<div class="w3-card w3-margin">
+  <div class="w3-container w3-padding">
+    <h4>Popular Posts</h4>
+  </div>
+  <ul class="w3-ul w3-white">
+    <li *ngFor="let article of topArticles|async" (click)="read(article.id)">
+      <div class="w3-hoverable w3-white w3-card">
+        <div class="w3-row">
+          <div class="w3-third">
+            <img [src]="article.imageUrl" alt="Image" class="w3-image" height="100%">
+          </div>
+          <div class="w3-rest w3-padding">
+            <span><b>{{article.title}}</b></span><br>
+            <span>{{article.subtitle}}</span><br>
+            <span class="w3-small w3-opacity">{{article.author}} &middot; {{article.created|date: 'MMM d, y'}}</span>
+          </div>
+        </div>
+      </div>
+
+    </li>
+
+  </ul>
+</div>

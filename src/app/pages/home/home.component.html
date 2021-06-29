@@ -1,0 +1,32 @@
+<div class="w3-content" style="max-width:1400px">
+  <!-- Grid -->
+  <div class="w3-row">
+
+  <!-- Articles-->
+  <div class="w3-col l8 s12">
+    <app-feed-article *ngFor="let article of (articles$|async)" [article]='article'></app-feed-article>
+  </div>
+
+
+  <div class="w3-col l4">
+    <!-- Word of the day  -->
+    <app-word-of-the-day></app-word-of-the-day>
+   <hr>
+
+    <!-- Posts -->
+    <app-popular-posts></app-popular-posts>
+    <hr>
+
+    <!-- Labels / tags -->
+    <div class="w3-margin">
+      <app-tag [tags]="(tags$|async)"></app-tag>
+    </div>
+
+
+  </div>
+
+  <!-- END GRID -->
+  </div><br>
+
+  <!-- END w3-content -->
+</div>
