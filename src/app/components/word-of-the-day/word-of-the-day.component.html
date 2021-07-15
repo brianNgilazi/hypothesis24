@@ -1,6 +1,6 @@
 <div class="w3-card w3-margin w3-margin-top">
   <ng-container *ngIf="!loading; else spinner">
-    <img *ngIf="(wotd$|async)?.apod.media_type !== 'video'" [src]="(wotd$|async)?.apod.url" class="w3-image">
+    <img *ngIf="(wotd$|async)?.apod.media_type !== 'video'" [src]="(wotd$|async)?.apod.url" class="w3-image" alt="">
     <div class="w3-container w3-white">
       <h4><b>Word of the day:</b></h4>
       <h5 style="text-transform: capitalize;">{{word}}</h5>

@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "emulator",
+			"problemMatcher": [],
+			"label": "Start Emulator",
+			"detail": "firebase emulators:start --only:functions,firestore,auth --import=emulator --export-on-exit"
+		}
+	]
+}
